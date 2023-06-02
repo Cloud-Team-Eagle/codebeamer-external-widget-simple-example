@@ -8,4 +8,23 @@ api.authenticate()
         }
     }))
     .then(response => response.json())
-    .then(items => console.log(items));
+    .then(items => {
+        console.log(items)
+        items.forEach(item => addRowToTable(item))
+    });
+
+function addRowToTable(data) {
+    const tableBody = document.getElementById('review_table_body');
+    const newRow = tableBody.insertRow();
+    createTableCell(newRow, data.name);         // Review Title
+    createTableCell(newRow, data.startDate);    // Started
+    createTableCell(newRow, data.endDate);    // Deadline
+    createTableCell(newRow, data.closedAt);      // Finished
+}
+
+function createTableCell(newRow, text) {
+    const actualText = text ?? '-';
+    const titleCell = newRow.insertCell();
+    const titleText = document.createTextNode(actualText);
+    titleCell.appendChild(titleText);
+}
