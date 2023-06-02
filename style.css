@@ -4,7 +4,6 @@ table {
     table-layout: fixed;
     width: 100%;
     border-collapse: collapse;
-    border: 3px solid purple;
 }
 
 thead th:nth-child(1) {
@@ -28,6 +27,12 @@ td {
     padding: 20px;
 }
 
+table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
 /* typography */
 
 html {
@@ -36,7 +41,7 @@ html {
 
 thead th,
 tfoot th {
-    font-family: "Rock Salt", cursive;
+    font-family: "helvetica neue", helvetica, arial, sans-serif;
 }
 
 th {
