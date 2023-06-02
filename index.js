@@ -1,13 +1,11 @@
-console.log("SOME DEBUG OUTPUT! (in all caps -_-)" );
-
 const api = new window.CbWidgetApi.WidgetApi(window, 'widget-id', '*');
 
 api.authenticate()
     .then(response => response.token)
-    .then(token => fetch('https://advantest.codebeamer.com/api/v3/projects',{
+    .then(token => fetch('https://advantest.codebeamer.com/api/v3/items/query?page=1&pageSize=25&queryString=tracker.id%20%3D%202048%20and%20assignedTo%20IN%20%28%27current%20user%27%29',{
         headers: {
             authorization: 'Bearer ' + token
         }
     }))
     .then(response => response.json())
-    .then(projects => console.log(projects));
+    .then(items => console.log(items));
