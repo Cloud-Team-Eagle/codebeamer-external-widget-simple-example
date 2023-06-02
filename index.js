@@ -13,13 +13,13 @@ api.authenticate()
         data.items.forEach(item => addRowToTable(item))
     });
 
-function addRowToTable(data) {
+function addRowToTable(item) {
     const tableBody = document.getElementById('review_table_body');
     const newRow = tableBody.insertRow();
-    createTableCell(newRow, data.name);         // Review Title
-    createTableCell(newRow, data.startDate);    // Started
-    createTableCell(newRow, data.endDate);      // Deadline
-    createTableCell(newRow, data.closedAt);     // Finished
+    createTableCell(newRow, item.name);         // Review Title
+    createTableCell(newRow, item.startDate);    // Started
+    createTableCell(newRow, item.endDate);      // Deadline
+    createTableCell(newRow, item.closedAt);     // Finished
 }
 
 function createTableCell(newRow, text) {
