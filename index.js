@@ -8,9 +8,9 @@ api.authenticate()
         }
     }))
     .then(response => response.json())
-    .then(items => {
-        console.log(items)
-        items.forEach(item => addRowToTable(item))
+    .then(data => {
+        console.log(data)
+        data.items.forEach(item => addRowToTable(item))
     });
 
 function addRowToTable(data) {
@@ -18,8 +18,8 @@ function addRowToTable(data) {
     const newRow = tableBody.insertRow();
     createTableCell(newRow, data.name);         // Review Title
     createTableCell(newRow, data.startDate);    // Started
-    createTableCell(newRow, data.endDate);    // Deadline
-    createTableCell(newRow, data.closedAt);      // Finished
+    createTableCell(newRow, data.endDate);      // Deadline
+    createTableCell(newRow, data.closedAt);     // Finished
 }
 
 function createTableCell(newRow, text) {
