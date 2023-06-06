@@ -28,7 +28,7 @@ function addRowToTable(item) {
 }
 
 function createTableCellWithDate(newRow, text) {
-    const actualText = text ? new Date(text).toString() : '-';
+    const actualText = text ? new Date(text).toLocaleString("en-GB") : '-';
     const titleCell = newRow.insertCell();
     const titleText = document.createTextNode(actualText);
     titleCell.appendChild(titleText);
