@@ -35,7 +35,7 @@ function createTableCellWithText(newRow, text) {
 }
 
 function createTableCellWithDate(newRow, text) {
-    const actualText = text ? new Date(text).toLocaleString("en-GB") : '-';
+    const actualText = text ? new Date(text).toLocaleString("sv-SE") : '-';
     createTableCellWithText(newRow, actualText)
 }
 
