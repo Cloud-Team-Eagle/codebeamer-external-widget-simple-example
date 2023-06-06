@@ -23,15 +23,20 @@ function addRowToTable(item) {
     createTableCellWithDate(newRow, item.startDate);                                                                // Started
     createTableCellWithDate(newRow, item.endDate);                                                                  // Deadline
     createTableCellWithDate(newRow, item.closedAt);                                                                 // Finished
+    createTableCellWithText(newRow, item.status.name)                                                               // Status
     createTableCellForReviewers(newRow, item);                                                                      // Reviewers
-    createTableCellForModerators(newRow, item);                                                                      // Moderators
+    createTableCellForModerators(newRow, item);                                                                     // Moderators
+}
+
+function createTableCellWithText(newRow, text) {
+    const titleCell = newRow.insertCell();
+    const titleText = document.createTextNode(text);
+    titleCell.appendChild(titleText);
 }
 
 function createTableCellWithDate(newRow, text) {
     const actualText = text ? new Date(text).toLocaleString("en-GB") : '-';
-    const titleCell = newRow.insertCell();
-    const titleText = document.createTextNode(actualText);
-    titleCell.appendChild(titleText);
+    createTableCellWithText(newRow, actualText)
 }
 
 function createTableCellWithLink(newRow, url, text) {
@@ -48,15 +53,11 @@ function createTableCellWithLink(newRow, url, text) {
 function createTableCellForReviewers(newRow, item) {
     const reviewers = item.customFields.find(it => it.fieldId === reviewCustomFieldReviewersFieldId).values;
     const text = reviewers.map(it => it.name).join(", ")
-    const titleCell = newRow.insertCell();
-    const titleText = document.createTextNode(text);
-    titleCell.appendChild(titleText);
+    createTableCellWithText(newRow, text)
 }
 
 function createTableCellForModerators(newRow, item) {
     const moderators = item.customFields.find(it => it.fieldId === reviewCustomFieldModeratorsFieldId).values;
     const text = moderators.map(it => it.name).join(", ")
-    const titleCell = newRow.insertCell();
-    const titleText = document.createTextNode(text);
-    titleCell.appendChild(titleText);
+    createTableCellWithText(newRow, text)
 }
