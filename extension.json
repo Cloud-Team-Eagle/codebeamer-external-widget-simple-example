@@ -4,7 +4,7 @@
       "enabled": "true",
       "externalWidgetConfig": {
         "id": "dashboard-widget-example",
-        "name": "Dashboard Widget Example",
+        "name": "My Reviews",
         "viewUrl": "./index.html",
         "iconUrl": "./icon.png",
         "attributes": {
