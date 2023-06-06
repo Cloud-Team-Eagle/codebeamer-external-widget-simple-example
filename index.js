@@ -46,7 +46,7 @@ function createTableCellWithLink(newRow, url, text) {
 }
 
 function createTableCellForReviewers(newRow, item) {
-    const reviewers = item.customFields.find(it => it.fieldId === reviewCustomFieldReviewersFieldId);
+    const reviewers = item.customFields.find(it => it.fieldId === reviewCustomFieldReviewersFieldId).values;
     const text = reviewers.map(it => it.name).join(", ")
     const titleCell = newRow.insertCell();
     const titleText = document.createTextNode(text);
@@ -54,7 +54,7 @@ function createTableCellForReviewers(newRow, item) {
 }
 
 function createTableCellForModerators(newRow, item) {
-    const moderators = item.customFields.find(it => it.fieldId === reviewCustomFieldModeratorsFieldId);
+    const moderators = item.customFields.find(it => it.fieldId === reviewCustomFieldModeratorsFieldId).values;
     const text = moderators.map(it => it.name).join(", ")
     const titleCell = newRow.insertCell();
     const titleText = document.createTextNode(text);
