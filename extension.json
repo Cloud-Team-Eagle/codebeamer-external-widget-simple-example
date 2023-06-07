@@ -4,7 +4,7 @@
       "enabled": "true",
       "externalWidgetConfig": {
         "id": "dashboard-widget-example",
-        "name": "My Reviews",
+        "name": "Reviews where I am Reviewer or Moderator",
         "viewUrl": "./index.html",
         "iconUrl": "./icon.png",
         "attributes": {
