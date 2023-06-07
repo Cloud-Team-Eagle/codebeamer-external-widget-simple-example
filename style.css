@@ -34,6 +34,10 @@ thead th:nth-child(6) {
     width: 15%;
 }
 
+td {
+    word-wrap: break-word;
+}
+
 th,
 td {
     padding: 20px;
