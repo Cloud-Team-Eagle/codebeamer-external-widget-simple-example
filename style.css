@@ -6,21 +6,33 @@ table {
     border-collapse: collapse;
 }
 
-/*thead th:nth-child(1) {*/
-/*    width: 30%;*/
-/*}*/
+thead th:nth-child(1) {
+    width: 15%;
+}
 
-/*thead th:nth-child(2) {*/
-/*    width: 20%;*/
-/*}*/
+thead th:nth-child(2) {
+    width: 15%;
+}
 
-/*thead th:nth-child(3) {*/
-/*    width: 15%;*/
-/*}*/
+thead th:nth-child(3) {
+    width: 15%;
+}
 
-/*thead th:nth-child(4) {*/
-/*    width: 35%;*/
-/*}*/
+thead th:nth-child(4) {
+    width: 15%;
+}
+
+thead th:nth-child(5) {
+    width: 15%;
+}
+
+thead th:nth-child(6) {
+    width: 15%;
+}
+
+thead th:nth-child(6) {
+    width: 15%;
+}
 
 th,
 td {
