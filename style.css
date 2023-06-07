@@ -4,7 +4,7 @@ table {
     table-layout: fixed;
     width: 100%;
     border-collapse: collapse;
-    font-size: 2vw;
+    font-size: 1.5vw;
 }
 
 thead th:nth-child(1) {
