@@ -5,49 +5,23 @@ table {
     width: 100%;
     border-collapse: collapse;
     font-size: 1.5vw;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
 }
 
 thead th:nth-child(1) {
     width: 15%;
 }
 
-thead th:nth-child(2) {
-    width: 15%;
-}
-
-thead th:nth-child(3) {
-    width: 15%;
-}
-
-thead th:nth-child(4) {
-    width: 15%;
-}
-
-thead th:nth-child(5) {
-    width: 15%;
-}
-
-thead th:nth-child(6) {
-    width: 15%;
-}
-
-thead th:nth-child(6) {
-    width: 15%;
+th {
+    width: 50px;
+    padding: 20px;
 }
 
 td {
     word-wrap: break-word;
-}
-
-th,
-td {
     padding: 20px;
-}
-
-table {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
 }
 
 /* typography */
