@@ -9,6 +9,9 @@ table {
     display: block;
     overflow-x: auto;
     white-space: nowrap;
+}
+
+thead {
     border-bottom: solid 1px grey;
 }
 
