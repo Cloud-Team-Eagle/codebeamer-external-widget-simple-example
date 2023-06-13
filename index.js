@@ -11,7 +11,7 @@ api.authenticate()
     .then(data => {
         console.log(data)
         data.items.forEach(item => addRowToTable(item))
-        Window.frameElement.style.height = "400px"
+        window.frameElement.style.height = "400px"
     });
 
 const reviewCustomFieldReviewersFieldId = 1000;
