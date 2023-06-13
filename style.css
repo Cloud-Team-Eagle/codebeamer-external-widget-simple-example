@@ -2,7 +2,7 @@
 
 table {
     table-layout: fixed;
-    width: 90%;
+    width: 100%;
     height: 100%;
     border-collapse: collapse;
     font-size: 1.5vw;
@@ -37,6 +37,17 @@ thead th:nth-child(6) {
 
 thead th:nth-child(7) {
     max-width: 15%;
+}
+
+th::after {
+    background: grey none repeat scroll 0 0;
+    bottom: -2px;
+    content: "";
+    display: block;
+    height: 2px; /* matches #cart-table th border-bottom value */
+    left: 0px;
+    position: absolute;
+    right: -2px; /* Matches table border-spacing value */
 }
 
 th {
