@@ -45,6 +45,7 @@ function createTableCellWithLink(newRow, url, text) {
     a.appendChild(linkText);
     a.title = text;
     a.href = url;
+    a.target = "_blank";
     document.body.appendChild(a);
     const titleCell = newRow.insertCell();
     titleCell.appendChild(a);

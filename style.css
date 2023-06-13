@@ -2,7 +2,8 @@
 
 table {
     table-layout: fixed;
-    width: 100%;
+    width: 90%;
+    height: 100%;
     border-collapse: collapse;
     font-size: 1.5vw;
     display: block;
@@ -57,14 +58,6 @@ html {
 thead th,
 tfoot th {
     font-family: "helvetica neue", helvetica, arial, sans-serif;
-}
-
-th {
-    letter-spacing: 2px;
-}
-
-td {
-    letter-spacing: 1px;
 }
 
 tbody td {
