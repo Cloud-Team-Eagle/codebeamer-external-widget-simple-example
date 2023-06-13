@@ -12,7 +12,7 @@ table {
 }
 
 thead {
-    border-bottom: solid 1px grey;
+    border-bottom: solid 1px lightgrey;
 }
 
 thead th:nth-child(1) {
