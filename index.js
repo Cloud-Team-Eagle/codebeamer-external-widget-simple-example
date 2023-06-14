@@ -1,18 +1,30 @@
 const api = new window.CbWidgetApi.WidgetApi(window, 'widget-id', '*');
 
-api.authenticate()
-    .then(response => response.token)
-    .then(token => fetch('https://advantest.codebeamer.com/api/v3/items/query?page=1&pageSize=25&queryString=SELECT%20WHERE%20tracker.id%20%3D%202048%20and%20assignedTo%20IN%20%28%27current%20user%27%29%20GROUP%20BY%20status',{
-        headers: {
-            authorization: 'Bearer ' + token
-        }
-    }))
-    .then(response => response.json())
-    .then(data => {
-        console.log(data)
-        data.items.forEach(item => addRowToTable(item))
-        window.frameElement.style.height = "400px"
-    });
+const pageSize = 25;
+let pages = 1;
+
+getItemsForPage(1);
+
+function getItemsForPage(pageNumber) {
+    api.authenticate()
+        .then(response => response.token)
+        .then(token => fetch(`https://advantest.codebeamer.com/api/v3/items/query?page=${pageNumber}&pageSize=${pageSize}&queryString=SELECT%20WHERE%20tracker.id%20%3D%202048%20and%20assignedTo%20IN%20%28%27current%20user%27%29%20GROUP%20BY%20status`, {
+            headers: {
+                authorization: 'Bearer ' + token
+            }
+        }))
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            pages = data.total / pageSize
+            data.items.forEach(item => addRowToTable(item))
+            // window.frameElement.style.height = "400px" // Somehow window.frameElement is null
+        });
+}
+
+for (let page = 1; page < pages; page++) {
+    getItemsForPage(page)
+}
 
 const reviewCustomFieldReviewersFieldId = 1000;
 const reviewCustomFieldModeratorsFieldId = 1001;
