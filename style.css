@@ -43,10 +43,14 @@ thead th:nth-child(7) {
     max-width: 15%;
 }
 
+th {
+    padding: 5px;
+}
 
 td {
     word-wrap: break-word;
     white-space: normal;
+    padding: 5px;
 }
 
 /* typography */
