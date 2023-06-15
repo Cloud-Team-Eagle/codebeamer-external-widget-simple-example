@@ -4,10 +4,36 @@ const pageSize = 25;
 let pages = 1;
 let items = []
 
-getItemsForPage(1);
+getItemsForPage(1)
+    .then(_ => {
+        const pageNumbers = [];
+        for (let page = 2; page <= pages; page++) {
+            pageNumbers.push(page);
+        }
+        const promises = pageNumbers.map(it => getItemsForPage(it))
+        Promise.all(promises).then(_ => {
+            const OPEN_REVIEW_STATUS = "Unset";
+            items.sort((a, b) => {
+                const aStatus = a.status.name
+                const bStatus = b.status.name
+                if (aStatus !== bStatus) {
+                    if(aStatus === OPEN_REVIEW_STATUS) {
+                        return -1
+                    }
+                    if(bStatus === OPEN_REVIEW_STATUS) {
+                        return -1
+                    }
+                    return a.localeCompare(b)
+                }
+                return a.startDate > b.startDate ? -1 : a.startDate < b.startDate ? 1 : 0
+            })
+            items.forEach(it => addRowToTable(it))
+            window.frameElement.style.height = "400px"
+        })
+    });
 
-async function getItemsForPage(pageNumber) {
-    await api.authenticate()
+function getItemsForPage(pageNumber) {
+    return api.authenticate()
         .then(response => response.token)
         .then(token => fetch(`https://advantest.codebeamer.com/api/v3/items/query?page=${pageNumber}&pageSize=${pageSize}&queryString=SELECT%20WHERE%20tracker.id%20%3D%202048%20and%20assignedTo%20IN%20%28%27current%20user%27%29%20GROUP%20BY%20status`, {
             headers: {
@@ -21,27 +47,6 @@ async function getItemsForPage(pageNumber) {
             items.push(...(data.items))
         });
 }
-
-for (let page = 1; page < pages; page++) {
-    getItemsForPage(page)
-}
-const OPEN_REVIEW_STATUS = "Unset";
-items.sort((a, b) => {
-    const aStatus = a.status.name
-    const bStatus = b.status.name
-    if (aStatus !== bStatus) {
-        if(aStatus === OPEN_REVIEW_STATUS) {
-            return -1
-        }
-        if(bStatus === OPEN_REVIEW_STATUS) {
-            return -1
-        }
-        return a.localeCompare(b)
-    }
-    return a.startDate > b.startDate ? -1 : a.startDate < b.startDate ? 1 : 0
-})
-items.forEach(it => addRowToTable(it))
-window.frameElement.style.height = "400px"
 
 const reviewCustomFieldReviewersFieldId = 1000;
 const reviewCustomFieldModeratorsFieldId = 1001;
