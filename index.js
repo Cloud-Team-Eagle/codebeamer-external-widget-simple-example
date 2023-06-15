@@ -28,7 +28,6 @@ getItemsForPage(1)
                 return a.startDate > b.startDate ? -1 : a.startDate < b.startDate ? 1 : 0
             })
             items.forEach(it => addRowToTable(it))
-            window.frameElement.style.height = "400px"
         })
     });
 
