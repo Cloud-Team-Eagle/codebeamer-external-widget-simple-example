@@ -4,10 +4,10 @@ const pageSize = 25;
 let pages = 1;
 let items = []
 
-await getItemsForPage(1);
+getItemsForPage(1);
 
-function getItemsForPage(pageNumber) {
-    api.authenticate()
+async function getItemsForPage(pageNumber) {
+    await api.authenticate()
         .then(response => response.token)
         .then(token => fetch(`https://advantest.codebeamer.com/api/v3/items/query?page=${pageNumber}&pageSize=${pageSize}&queryString=SELECT%20WHERE%20tracker.id%20%3D%202048%20and%20assignedTo%20IN%20%28%27current%20user%27%29%20GROUP%20BY%20status`, {
             headers: {
@@ -23,7 +23,7 @@ function getItemsForPage(pageNumber) {
 }
 
 for (let page = 1; page < pages; page++) {
-    await getItemsForPage(page)
+    getItemsForPage(page)
 }
 const OPEN_REVIEW_STATUS = "Unset";
 items.sort((a, b) => {
