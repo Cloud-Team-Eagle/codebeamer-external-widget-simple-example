@@ -2,6 +2,7 @@ const api = new window.CbWidgetApi.WidgetApi(window, 'widget-id', '*');
 
 const pageSize = 25;
 let pages = 1;
+let items = []
 
 getItemsForPage(1);
 
@@ -17,14 +18,30 @@ function getItemsForPage(pageNumber) {
         .then(data => {
             console.log(data)
             pages = data.total / pageSize
-            data.items.forEach(item => addRowToTable(item))
-            // window.frameElement.style.height = "400px" // Somehow window.frameElement is null
+            items.push(...(data.items))
         });
 }
 
 for (let page = 1; page < pages; page++) {
     getItemsForPage(page)
 }
+const OPEN_REVIEW_STATUS = "Unset";
+items.sort((a, b) => {
+    const aStatus = a.status.name
+    const bStatus = b.status.name
+    if (aStatus !== bStatus) {
+        if(aStatus === OPEN_REVIEW_STATUS) {
+            return -1
+        }
+        if(bStatus === OPEN_REVIEW_STATUS) {
+            return -1
+        }
+        return a.localeCompare(b)
+    }
+    return a.startDate > b.startDate ? -1 : a.startDate < b.startDate ? 1 : 0
+})
+items.forEach(it => addRowToTable(it))
+window.frameElement.style.height = "400px"
 
 const reviewCustomFieldReviewersFieldId = 1000;
 const reviewCustomFieldModeratorsFieldId = 1001;
