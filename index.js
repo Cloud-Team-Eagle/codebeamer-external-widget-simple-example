@@ -4,7 +4,7 @@ const pageSize = 25;
 let pages = 1;
 let items = []
 
-getItemsForPage(1);
+await getItemsForPage(1);
 
 async function getItemsForPage(pageNumber) {
     await api.authenticate()
@@ -23,7 +23,7 @@ async function getItemsForPage(pageNumber) {
 }
 
 for (let page = 1; page < pages; page++) {
-    getItemsForPage(page)
+    await getItemsForPage(page)
 }
 const OPEN_REVIEW_STATUS = "Unset";
 items.sort((a, b) => {
