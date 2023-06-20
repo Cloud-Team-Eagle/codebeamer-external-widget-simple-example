@@ -1,18 +1,18 @@
 const api = new window.CbWidgetApi.WidgetApi(window, 'widget-id', '*');
 
 const pageSize = 25;
+const OPEN_REVIEW_STATUS = "Unset";
 let pages = 1;
 let items = []
 
 getItemsForPage(1)
-    .then(_ => {
+.then(_ => {
         const pageNumbers = [];
         for (let page = 2; page <= pages; page++) {
             pageNumbers.push(page);
         }
         const promises = pageNumbers.map(it => getItemsForPage(it))
         Promise.all(promises).then(_ => {
-            const OPEN_REVIEW_STATUS = "Unset";
             items.sort((a, b) => {
                 const aStatus = a.status.name
                 const bStatus = b.status.name
@@ -34,7 +34,7 @@ getItemsForPage(1)
 function getItemsForPage(pageNumber) {
     return api.authenticate()
         .then(response => response.token)
-        .then(token => fetch(`https://advantest.codebeamer.com/api/v3/items/query?page=${pageNumber}&pageSize=${pageSize}&queryString=SELECT%20WHERE%20tracker.id%20%3D%202048%20and%20assignedTo%20IN%20%28%27current%20user%27%29%20GROUP%20BY%20status`, {
+        .then(token => fetch(`https://advantest.codebeamer.com/api/v3/items/query?page=${pageNumber}&pageSize=${pageSize}&queryString=tracker.id%20%3D%202048%20and%20assignedTo%20IN%20%28%27current%20user%27%29%20and%20status%21%3D%27Closed%27`, {
             headers: {
                 authorization: 'Bearer ' + token
             }
@@ -57,7 +57,8 @@ function addRowToTable(item) {
     createTableCellWithDate(newRow, item.startDate);                                                                // Started
     createTableCellWithDate(newRow, item.endDate);                                                                  // Deadline
     createTableCellWithDate(newRow, item.closedAt);                                                                 // Finished
-    createTableCellWithText(newRow, item.status.name)                                                               // Status
+    const statusName = item.status.name === OPEN_REVIEW_STATUS ? "Open" : item.status.name
+    createTableCellWithText(newRow, statusName)                                                               // Status
     createTableCellForReviewers(newRow, item);                                                                      // Reviewers
     createTableCellForModerators(newRow, item);                                                                     // Moderators
 }
