@@ -23,7 +23,7 @@ getItemsForPage(1)
                     if(bStatus === OPEN_REVIEW_STATUS) {
                         return -1
                     }
-                    return a.localeCompare(b)
+                    return aStatus.localeCompare(bStatus)
                 }
                 return a.startDate > b.startDate ? -1 : a.startDate < b.startDate ? 1 : 0
             })
