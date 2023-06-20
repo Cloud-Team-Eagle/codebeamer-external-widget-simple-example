@@ -21,7 +21,7 @@ getItemsForPage(1)
                         return -1
                     }
                     if(bStatus === OPEN_REVIEW_STATUS) {
-                        return -1
+                        return 1
                     }
                     return aStatus.localeCompare(bStatus)
                 }
