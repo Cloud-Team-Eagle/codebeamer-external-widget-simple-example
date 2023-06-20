@@ -42,7 +42,7 @@ function getItemsForPage(pageNumber) {
         .then(response => response.json())
         .then(data => {
             console.log(data)
-            pages = data.total / pageSize
+            pages = Math.ceil(data.total / pageSize)
             items.push(...(data.items))
         });
 }
