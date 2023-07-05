@@ -2,6 +2,7 @@ const api = new window.CbWidgetApi.WidgetApi(window, 'widget-id', '*');
 
 const pageSize = 25;
 const OPEN_REVIEW_STATUS = "Unset";
+const NEW_REVIEW_STATUS = "New";
 let pages = 1;
 let items = []
 
@@ -50,6 +51,10 @@ function getItemsForPage(pageNumber) {
 const reviewCustomFieldReviewersFieldId = 1000;
 const reviewCustomFieldModeratorsFieldId = 1001;
 
+function getStatusName(item) {
+    return item.status.name === OPEN_REVIEW_STATUS || item.status.name === NEW_REVIEW_STATUS ? "Open" : item.status.name;
+}
+
 function addRowToTable(item) {
     const tableBody = document.getElementById('review_table_body');
     const newRow = tableBody.insertRow();
@@ -57,8 +62,7 @@ function addRowToTable(item) {
     createTableCellWithDate(newRow, item.startDate);                                                                // Started
     createTableCellWithDate(newRow, item.endDate);                                                                  // Deadline
     createTableCellWithDate(newRow, item.closedAt);                                                                 // Finished
-    const statusName = item.status.name === OPEN_REVIEW_STATUS ? "Open" : item.status.name
-    createTableCellWithText(newRow, statusName)                                                               // Status
+    createTableCellWithText(newRow, getStatusName(item))                                                            // Status
     createTableCellForReviewers(newRow, item);                                                                      // Reviewers
     createTableCellForModerators(newRow, item);                                                                     // Moderators
 }
